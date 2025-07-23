@@ -1,14 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  ChevronDown,
-  Mail,
-  ExternalLink,
-  Code,
-  Database,
-  Globe,
-} from "lucide-react";
+import Image from "next/image";
+import { Code, Database, Globe } from "lucide-react";
 
 import {
   FaTelegramPlane,
@@ -18,19 +12,19 @@ import {
 } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 
+const roles = [
+  "Full Stack Developer",
+  "Next.js",
+  "Spring Boot",
+  "PostgreSQL",
+  "React.js",
+  "Tailwind CSS",
+  "MySQL",
+];
+
 export function Hero() {
   const [currentText, setCurrentText] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-
-  const roles = [
-    "Full Stack Developer",
-    "Next.js",
-    "Spring Boot",
-    "PostgreSQL",
-    "React.js",
-    "Tailwind CSS",
-    "MySQL",
-  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -97,10 +91,13 @@ export function Hero() {
             <div className="relative mx-auto w-56 h-56 mb-6">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-full animate-spin-slow"></div>
               <div className="absolute inset-1 bg-white rounded-full flex items-center justify-center">
-                <img
+                <Image
                   src="https://woiwumpnbnbfmlrqnbvq.supabase.co/storage/v1/object/public/file-project//my-profile.jpg"
                   alt="Sobothty"
                   className="size-full rounded-full object-cover"
+                  width={224}
+                  height={224}
+                  priority
                 />
               </div>
             </div>
@@ -109,7 +106,7 @@ export function Hero() {
           {/* Greeting */}
           <div className="mb-4">
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-4">
-              👋 Hello, I'm Sobothty
+              👋 Hello, I&apos;m Sobothty
             </span>
           </div>
 

@@ -11,6 +11,7 @@ export async function GET() {
     const { data, error } = await supabase
       .from("tech_stack") // or "techstack" - adjust based on your table name
       .select("*")
+      .order("is_programming" , { ascending: false }) // Adjust based on your sorting needs
       .order("created_at", { ascending: false });
 
     if (error) {
@@ -29,6 +30,7 @@ export async function GET() {
       error: null,
     });
   } catch (error) {
+    console.error("Unexpected error fetching tech stack:", error);
     return NextResponse.json(
       {
         techStack: [],

@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Code,
   Database,
-  Globe,
   BookOpen,
   Award,
   Users,
@@ -16,39 +15,51 @@ import {
 } from "lucide-react";
 
 import Image from "next/image";
+import TechSection from "./tech-section";
+
+type Projects = {
+  id: number;
+  name: string;
+  description: string;
+  thumbnail: string;
+  created_at: string;
+  status: string;
+  link: string;
+};
 
 const About = () => {
-  const skills = [
-    {
-      category: "Frontend",
-      icon: <Code className="w-6 h-6" />,
-      technologies: [
-        "React.js",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "JavaScript",
-      ],
-      color: "bg-blue-500",
-    },
-    {
-      category: "Backend",
-      icon: <Database className="w-6 h-6" />,
-      technologies: ["Node.js", "Spring Boot", "Java", "REST APIs"],
-      color: "bg-green-500",
-    },
-    {
-      category: "Database",
-      icon: <Globe className="w-6 h-6" />,
-      technologies: ["PostgreSQL", "MySQL", "Supabase"],
-      color: "bg-purple-500",
-    },
-  ];
+  const [projects, setProjects] = useState<Projects[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_APP_URL}/api/projects`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+        const data = await response.json();
+        console.log("Fetched Projects:", data.projects);
+        setProjects(data.projects);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   const stats = [
     {
       icon: <Code className="w-8 h-8" />,
-      value: "3+",
+      value: projects.length.toString() + " +" ,
       label: "Projects Completed",
     },
     {
@@ -149,7 +160,7 @@ const About = () => {
             </div>
 
             <h3 className="text-3xl md:text-4xl font-bold text-white">
-              I'm Sobothty, a passionate{" "}
+              I&apos;m Sobothty, a passionate{" "}
               <span className="text-blue-400">Full Stack Developer</span>
             </h3>
 
@@ -163,15 +174,15 @@ const About = () => {
 
               <p>
                 My journey in programming started during my academic years, and
-                I've since mastered modern technologies like React, Next.js,
-                Node.js, and Spring Boot. I enjoy tackling complex problems and
-                turning ideas into reality through code.
+                I&apos;ve since mastered modern technologies like React,
+                Next.js, Node.js, and Spring Boot. I enjoy tackling complex
+                problems and turning ideas into reality through code.
               </p>
 
               <p>
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                fellow developers in the community.
+                When I&apos;m not coding, you can find me exploring new
+                technologies, contributing to open-source projects, or sharing
+                knowledge with fellow developers in the community.
               </p>
             </div>
 
@@ -231,40 +242,7 @@ const About = () => {
 
         {/* Skills Section */}
         <div className="mb-20">
-          <h3 className="text-3xl font-bold text-center text-white mb-12">
-            Technical <span className="text-blue-400">Skills</span>
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skill, index) => (
-              <div
-                key={index}
-                className="bg-gray-700 border border-gray-600 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:bg-gray-600 transition-all duration-300"
-              >
-                <div className="flex items-center mb-4">
-                  <div
-                    className={`${skill.color} text-white p-3 rounded-full mr-4`}
-                  >
-                    {skill.icon}
-                  </div>
-                  <h4 className="text-xl font-semibold text-white">
-                    {skill.category}
-                  </h4>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {skill.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gray-600 text-gray-200 rounded-full text-sm font-medium hover:bg-blue-600 hover:text-white transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <TechSection />
         </div>
 
         {/* Timeline Section */}

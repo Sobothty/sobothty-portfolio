@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2 group">
+            <Link href="/" className="flex items-center space-x-2 group">
               <div className="relative">
                 <div className="w-10 h-10 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-lg rotate-6 group-hover:rotate-12 transition-transform duration-300"></div>
                 <div className="absolute inset-0 w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-lg -rotate-6 group-hover:-rotate-12 transition-transform duration-300"></div>
@@ -59,7 +60,7 @@ const Header = () => {
                   Portfolio
                 </p>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
