@@ -6,19 +6,6 @@ export async function GET() {
     // Server client automatically reads cookies
     const supabase = await createClient();
 
-    // Check if user is authenticated via cookies
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Please login" },
-        { status: 401 }
-      );
-    }
-
     // Now fetch data with authenticated user context
     const { data, error } = await supabase
       .from("projects")
@@ -36,9 +23,9 @@ export async function GET() {
       );
     }
 
+    // ✅ ADD THIS - Return success response
     return NextResponse.json({
       projects: data || [],
-      user: user.email, // Include user info if needed
       error: null,
     });
   } catch (error) {

@@ -3,9 +3,11 @@ import { Hero } from "@/components/hero";
 
 export default async function Home() {
   return (
-    <main className="min-h-screen max-w-7xl px-4 py-8 over-flow-x-hidden mx-auto">
-      <Hero />
-      <About />
+    <main className="min-h-screen w-full overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Hero />
+        <About />
+      </div>
     </main>
   );
 }
