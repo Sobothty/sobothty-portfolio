@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Script from "next/script";
+import { Analytics } from '@vercel/analytics/next';
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Header />
         {/* Main content area */}
         {children}
+        <Analytics />
       </body>
     </html>
   );
