@@ -58,7 +58,7 @@ export function Hero() {
     },
     {
       icon: <FaLinkedinIn className="w-5 h-5" />,
-      href: "https://linkedin.com/in/yourusername",
+      href: "https://linkedin.com/in/kry-sobothty-1656712a9/",
       label: "LinkedIn",
     },
     {
