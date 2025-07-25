@@ -3,7 +3,8 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Script from "next/script";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
+import { Analytic } from "./analytic";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google Analytics Script */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
           strategy="afterInteractive"
@@ -47,6 +49,7 @@ export default function RootLayout({
         {/* Main content area */}
         {children}
         <Analytics />
+        <Analytic />
       </body>
     </html>
   );
