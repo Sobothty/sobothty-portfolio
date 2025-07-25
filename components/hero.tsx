@@ -43,7 +43,7 @@ export function Hero() {
   const socialLinks = [
     {
       icon: <FaTelegramPlane className="w-5 h-5" />,
-      href: "https://t.me/Sobothty",
+      href: "https://t.me/isSobothty",
       label: "Telegram",
     },
     {
